@@ -1,13 +1,19 @@
-var express = require('express');
-var http = require('http').Server(express);
-var io = require('socket.io')(http);
-var go = require('./globalObject');
+var express = require('express'),
+	http = require('http').Server(express),
+	io = require('socket.io')(http),
+	go = require('./globalObject');
 
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var path = require('path'),
+	favicon = require('serve-favicon'),
+	logger = require('morgan'),
+	cookieParser = require('cookie-parser'),
+	bodyParser = require('body-parser');
+
+var expressSession = require('express-session'),
+	busboy = require('connect-busboy'),
+	passport = require('passport'),
+	LocalStrategy = require('passport-local').Strategy,
+	MD5 = require('MD5');
 
 var routes = require('./routes/index');
 
@@ -24,6 +30,43 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(busboy());
+app.use(cookieParser());
+app.use(expressSession({secret: 'secret key'}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+go.database.connect(function(msg) {
+	console.log(msg);
+}, function(err) { 
+	console.log(err);
+});
+
+passport.serializeUser(function(user, done) {
+	done(null, user.id);
+});
+passport.deserializeUser(function(id, done) {
+	go.database.User.findById(id, function(err, user) {
+		done(err, user);
+	});
+});
+passport.use(new LocalStrategy(
+	function(username, password, done) {
+		go.database.User.findOne({username: username}, function (err, user) {
+			if (err) {
+				return done(err);
+			} else {
+				if (!user.validPassword(password)) {
+					// console.log('wrong password');
+					return done(null, false);
+				}
+				// console.log('correct password');
+				return done(null, user);
+			}
+			
+		});
+	}
+));
 
 app.use('/', routes);
 
@@ -110,6 +153,7 @@ io.on('connection', function(socket){
 		}
 	});
 });
+go.io = io;
 http.listen(3001, function() {
 	console.log("socket listen at 3001");
 });

@@ -1,3 +1,6 @@
+var config = require('./config.json'),
+	database = require('./service/DatabaseService')(config.dbUrl);
+
 var go = {
 	roomList: {
 		/*
@@ -16,7 +19,8 @@ var go = {
 			IP: "xx.xx.xx.xx"
 		}
 		*/
-	}
+	},
+	database: database
 };
 
 module.exports = go;
