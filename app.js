@@ -118,7 +118,21 @@ io.on('connection', function(socket){
 			
 			console.dir(go);
 		}
-	})
+	});
+	socket.on('video control', function (msg) {
+		var roomID = go.socketList[socket.id].roomID;
+		go.roomList[roomID].audience.forEach(function (element) {
+			io.to(element).emit("video control", msg);
+		});
+		io.to(go.roomList[roomID].anchorSocket).emit("video control", msg);
+	});
+	socket.on('danmaku', function (msg) {
+		var roomID = go.socketList[socket.id].roomID;
+		go.roomList[roomID].audience.forEach(function (element) {
+			io.to(element).emit("danmaku", msg);
+		});
+		io.to(go.roomList[roomID].anchorSocket).emit("danmaku", msg);
+	});
 	socket.on('disconnect', function(){
 		console.log('user disconnected');
 

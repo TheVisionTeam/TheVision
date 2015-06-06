@@ -17,8 +17,24 @@ window.angularApp
 							password: $s.user.password
 					.success (data, _) ->
 						if data
+							$rs.logInUser user.name
 							$location.path '/dashboard'
+						else
+							$rs.logOut user.name
+							$('#regist').modal 'toggle'
 
+
+			UI.init()
+
+
+	]
+	.controller 'DashboardController', [
+		'$scope',
+		'$rootScope',
+		'$http',
+		'$cookieStore',
+		'$location',
+		($s, $rs, $http, $cookie, $location) ->
 			UI.init()
 
 
