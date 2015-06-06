@@ -89,9 +89,12 @@ var libs = {
         "vendor/assets/angular-route/angular-route.min.js",
         "vendor/assets/underscore/underscore-min.js",
         "vendor/assets/modernizr/modernizr.js",
-        "vendor/assets/angular-sanitize/angular-sanitize.min.js"
+        "vendor/assets/angular-sanitize/angular-sanitize.min.js",
+        "vendor/assets/angular-cookies/angular-cookies.min.js",
+        "vendor/assets/semantic-ui/dist/semantic.min.js"
     ],
     css: [
+        "vendor/assets/semantic-ui/dist/semantic.min.css"
     ],
     font: [
         //"vendor/fonts/**"
@@ -108,9 +111,10 @@ gulp.task("libs", function() {
     .pipe(notify({ message: 'Libs-Scripts task complete' }));
 
   gulp.src(libs.css)
-    .pipe(gulp.dest('public/assets/css'))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(minifycss())
+    //.pipe(gulp.dest('public/assets/css'))
+    //.pipe(rename({suffix: '.min'}))
+    //.pipe(minifycss())
+    .pipe(concat('bundle.css'))
     .pipe(gulp.dest('public/assets/css'))
     .pipe(notify({ message: 'Libs-Stylesheets task complete!' }));
 
