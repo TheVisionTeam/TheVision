@@ -45,7 +45,7 @@ define(['jquery', 'file_meta', 'p2p', 'utils', 'underscore'], function($, file_m
           client.piece_queue = [];
           client.finished_piece = _.map(client.finished_piece, function() { return 1; });
           client.update_bitmap();
-          if (parent) parent.window.setHash(file_meta.hash)
+          if (parent) postMessage({ hash: file_meta.hash }, parent.window)
           J_console.append('<li>room created: <a href="/room/'+file_meta.hash+'" target=_blank>'+
                            location.href.replace(/room\/new.*$/i, 'room/'+file_meta.hash)+'</a>');
           J_console.append('<li><dl class=info>'+
