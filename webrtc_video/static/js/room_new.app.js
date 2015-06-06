@@ -24,7 +24,7 @@ define(['jquery', 'file_meta', 'p2p', 'utils', 'underscore'], function($, file_m
 
   client.onready = function() {
     J_console.append('<li>connected. get peerid: '+client.peerid);
-    J_console.append('<li>select a file to share: <input type=file id=J_file />');
+    J_console.append('<li>select a file to share: ');
     $('#J_file').on('change', function(evt) {
       $('#J_file').attr('disabled', true);
       var file = evt.target.files[0];
