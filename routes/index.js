@@ -29,13 +29,13 @@ router.post("/register", function (req, res) {
 				}
 			});
 		}
-	})
-})
+	});
+});
 
 router.post('/login', passport.authenticate('local', {
 	successRedirect: '/home.html',
 	failureRedirect: '/'
-});
+}));
 
 router.get('/logout', function (req, res) {
 	req.logout();
@@ -43,9 +43,9 @@ router.get('/logout', function (req, res) {
 });
 
 router.post("/newRoom", function (req, res) {
-	if (!req.user) {
-		res.status(401);
-	} else {
+	// if (!req.user) {
+	// 	res.status(401);
+	// } else {
 		var roomID = new Date().toISOString();
 		go.roomList[roomID] = {
 			roomName: req.body.roomName,
@@ -53,7 +53,7 @@ router.post("/newRoom", function (req, res) {
 			audience: []
 		};
 		res.send(roomID);
-	}
+	// }
 });
 
 router.post("/friend/add", function (req, res) {
@@ -152,7 +152,7 @@ router.post("/friend/decline", function (req, res) {
 					});
 				}
 			}
-		}
+		});
 	}
 });
 router.get("/friend/request", function (req, res) {

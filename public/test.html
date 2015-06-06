@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>danmaku test</title>
+	<style type="text/css">
+		#danmu {
+			width: 100%;
+			height: 300px;
+		}
+		.dm {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="danmu"></div>
+	<input type="text"><button>submit</button>
+
+	<script type="text/javascript" src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="http://www.liyawei.cn/danmu/assets/js/jquery.danmu.js"></script>
+	<script type="text/javascript">
+		var socket = io("http://localhost:3001");
+		socket.on("danmaku", function(msg) {
+			var div = $(msg);
+			div.animate({right:'100%'});
+			$("#danmu").append(div);
+		});
+		$("button").click(function(){
+			var top = Math.random() * 300;
+			var fontSize = Math.random() * 20 + 20;
+
+			var text = $("input").val();
+			var div = '<div class="dm" style="top: "' + top + 'px"; fontSize: "' + fontSize + 'px">' + text + '</div>';
+
+			socket.emit("danmaku", div)
+		});
+	</script>
+</body>
+</html>

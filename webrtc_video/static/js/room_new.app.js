@@ -24,7 +24,7 @@ define(['jquery', 'file_meta', 'p2p', 'utils', 'underscore'], function($, file_m
 
   client.onready = function() {
     J_console.append('<li>connected. get peerid: '+client.peerid);
-    J_console.append('<li>select a file to share: <input type=file id=J_file />');
+    J_console.append('<li>select a file to share: ');
     $('#J_file').on('change', function(evt) {
       $('#J_file').attr('disabled', true);
       var file = evt.target.files[0];
@@ -45,6 +45,7 @@ define(['jquery', 'file_meta', 'p2p', 'utils', 'underscore'], function($, file_m
           client.piece_queue = [];
           client.finished_piece = _.map(client.finished_piece, function() { return 1; });
           client.update_bitmap();
+          if (parent) window.parent.postMessage({ hash: file_meta.hash }, '*')
           J_console.append('<li>room created: <a href="/room/'+file_meta.hash+'" target=_blank>'+
                            location.href.replace(/room\/new.*$/i, 'room/'+file_meta.hash)+'</a>');
           J_console.append('<li><dl class=info>'+
