@@ -1,7 +1,7 @@
 var express = require('express');
 var http = require('http').Server(express);
 var io = require('socket.io')(http);
-var go = require('globalObject');
+var go = require('./globalObject');
 
 var path = require('path');
 var favicon = require('serve-favicon');
