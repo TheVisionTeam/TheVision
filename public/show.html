@@ -1,10 +1,6 @@
 <div class="ui page grid">
   <div class="column">
   	<script>
-  		window.setHash = function(hash) {}
-  		window.triggerVideoEvent = function(event) {
-
-  		}
   		function receiveMessage(event) {
   			console.log(event.data);
   			data = event.data
@@ -12,10 +8,26 @@
 	  			document.getElementById('videoPlayer').src = 'http://211.68.72.88:9200/room/' + data.hash
 	  		}
 	  		if (data.event) {
-	  			
+		  		if (!socket) {
+		  			window.socket = new WebSocket('ws://211.68.72.88:3001')
+		  			socket.onopen = function() {
+		  				socket.send(JSON.stringify(data))
+		  			}
+		  		}
+				else socket.send(JSON.stringify(data)
 	  		};
 		}
   		window.addEventListener("message", receiveMessage, false);
+
+  		if (!socket) {
+  			window.socket = new WebSocket('ws://211.68.72.88:3001')
+  		}
+  		socket.onmessage = function(event) {
+  			var data = event.data
+  			if (data.event) {
+  				document.getElementById('videoPlayer').contentWindow.postMessage(data, '*')
+  			}
+  		}
   	</script>
     <iframe class="uploader" src="http://211.68.72.88:9200/room/new"></iframe>
     <iframe class="video-player" id="videoPlayer" src=""></iframe>
