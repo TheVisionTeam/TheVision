@@ -1,0 +1,19 @@
+i.pot {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	&.red {
+		background-image: url("../images/redpot.png");
+	}
+
+	&.green {
+		background-image: url("../images/greenpot.png");
+	}
+
+	&.gray {
+		background-image: url("../images/graypot.png");
+	}
+}

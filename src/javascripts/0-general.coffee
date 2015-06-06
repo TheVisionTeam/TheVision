@@ -5,7 +5,7 @@ window.angularApp = angular.module 'TheVision', [
 ]
 
 window.APIServer = "http://127.0.0.1:3000"
-window.HTMLServer = "http://127.0.0.1:8080" 
+window.HTMLServer = "../../" 
 
 window.angularApp.run [
 	'$rootScope',
@@ -17,7 +17,7 @@ window.angularApp.run [
 ]
 
 
-widnow.angularApp.config [
+window.angularApp.config [
 	'$routeProvider',
 	($routeProvider) ->
 		$routeProvider
@@ -34,7 +34,15 @@ widnow.angularApp.config [
 ]
 
 window.UI = 
+	enableModal: ->
+		$('.modal-target').on 'click', ->
+			target = $(this).data 'modal'
+			console.log target
+			$("##{target}")
+				.modal('setting', 'transition', 'fade up')
+				.modal('toggle')
 	init: ->
+		@enableModal()
 
 $(document).ready ->
 	window.UI.init()

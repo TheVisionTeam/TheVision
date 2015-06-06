@@ -28,7 +28,7 @@ gulp.task('default', function() {
 // Basic Assets Generate Functions =========================
 
 gulp.task('scss', function() {
-  gulp.src('src/stylesheets/*.scss')
+  gulp.src('src/stylesheets/application.scss')
     .pipe(autoprefixer({
             browsers: ['last 2 version', '> 5%']
         }))
@@ -97,7 +97,7 @@ var libs = {
         "vendor/assets/semantic-ui/dist/semantic.min.css"
     ],
     font: [
-        //"vendor/fonts/**"
+        "vendor/fonts/**"
     ]
 };
 
