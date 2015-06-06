@@ -4,7 +4,7 @@ window.angularApp = angular.module 'TheVision', [
 	'ngCookies'
 ]
 
-window.APIServer = "http://127.0.0.1:3000"
+window.APIServer = ""
 window.HTMLServer = "../../" 
 
 window.angularApp.run [
@@ -20,14 +20,19 @@ window.angularApp.run [
 		$rs.logOut = (username) ->
 			$cookie.delete 'username'
 			$rs.userStatus.isLogIn = false
-		
-		$rs.userStatus = 
-			isLogin: false
+
+		if $cookie.get 'username'
+			$rs.userStatus = 
+				isLogIn: true
+				name: $cookie.get 'username'
+		else
+			$rs.userStatus = 
+				isLogin: false
 
 
-		$rs.on '$routeChangeStart', (event, currRoute, prevRoute) ->
-			if !($rs.userStatus.isLogIn) && prevRoute.access.needLogIn
-				$location.path '/'
+		##$rs.$on '$routeChangeStart', (event, currRoute, prevRoute) ->
+		##	if !($rs.userStatus.isLogIn) && prevRoute.access.needLogIn
+		##		$location.path '/'
 
 ]
 
@@ -49,7 +54,7 @@ window.angularApp.config [
 				access:
 					needLogIn: true
 
-			.when '/room/:roomId',
+			.when '/room',
 				templateUrl: "#{window.HTMLServer}/show.html"
 				controller: "RoomController"
 				access:
@@ -67,6 +72,13 @@ window.UI =
 			$("##{target}")
 				.modal('setting', 'transition', 'fade up')
 				.modal('toggle')
+	RoomUploaderToggle: ->
+		$('#room').removeClass 'has_uploader'
+		$('#room .player').removeClass 'hidden'
+		$('#uploaderInfo').modal 'show'
+		$('.status i').removeClass('red').addClass('green')
+		$('.status').html("<i class=\"pot green\"></i> 已成功建立连接！")
+
 	init: ->
 		@enableModal()
 

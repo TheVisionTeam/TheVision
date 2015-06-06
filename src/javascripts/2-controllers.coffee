@@ -28,13 +28,15 @@ window.angularApp
 
 
 	]
-	.controller 'DashboardController', [
+	.controller 'RoomController', [
 		'$scope',
 		'$rootScope',
 		'$http',
 		'$cookieStore',
 		'$location',
 		($s, $rs, $http, $cookie, $location) ->
+			$s.location = $location
+			$s.hasUploader = !!($location.hash)
 			UI.init()
 
 

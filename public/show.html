@@ -1,18 +1,68 @@
-<div class="ui page grid">
+<div class="ui page grid {{hasUploader ? &quot;has_uploader&quot; : &quot;&quot;}}" id="room">
   <div class="column">
-  	<script>
-  		window.setHash = function(hash) {}
-  		window.triggerVideoEvent = function(event) {
-
-  		}
-  		function receiveMessage(event) {
-  			console.log(event.data);
-  			data = event.data
-  			document.getElementById('videoPlayer').src = 'http://211.68.72.88:9200/room/' + data.hash
-		}
-  		window.addEventListener("message", receiveMessage, false);
-  	</script>
-    <iframe class="uploader" src="http://211.68.72.88:9200/room/new"></iframe>
-    <iframe class="video-player" id="videoPlayer" src=""></iframe>
+    <h1 class="header">
+      <div class="logo small">
+        <img src="/assets/images/logo-black.png" />
+      </div>
+      直播间<span class="status"><i class="red pot"></i>等待选择片源... {{location}}</span>
+    </h1>
+    <div class="uploader" ng-if="hasUploader">
+      <iframe height="100px" id="uploader" src="http://127.0.0.1:9200/room/new" width="100%"></iframe>
+    </div>
+    <div class="modal ui basic" id="uploaderInfo" ng-if="hasUploader">
+      <div class="header">
+        视频选择成功！
+      </div>
+      <div class="content">
+        <p>
+          你已经成功选择了一段视频，现在可以分享给朋友们啦！
+        </p>
+        <p>
+          <span id="url">--++--++--++</span>
+        </p>
+        <p>
+          请注意，和你一同分享视频的小伙伴都得靠你的帮助，所以在分享期间请不要关闭此网页哦~！
+        </p>
+      </div>
+      <div class="actions">
+        <a class="ui button basic green fluid inverted">知道啦！</a>
+      </div>
+    </div>
+    <div class="player hidden">
+      <iframe id="vedioPlayer" src=""></iframe>
+      <div class="ui form">
+        <input ng-model="message" placeholder="请在此输入信息" type="text" /><a class="button ui primary">发送</a>
+      </div>
+    </div>
   </div>
 </div>
+<script>
+  function receiveMessage(event) {
+      console.log(event.data);
+      data = event.data
+      if (data.hash) {
+        document.getElementById('videoPlayer').src = 'http://127.0.0.1:9200/room#' + data.hash;
+        UI.RoomUploaderToggle();
+        $('#url').html(data.hash);
+      }
+      if (data.event) {
+        if (!socket) {
+          window.socket = new WebSocket('ws://127.0.0.1:3001')
+          socket.onopen = function() {
+            socket.send(JSON.stringify(data))
+          }
+        }
+      else socket.send(JSON.stringify(data))
+      };
+  }
+  window.addEventListener("message", receiveMessage, false);
+  if (!window.socket) {
+    window.socket = new WebSocket('ws://127.0.0.1:3001')
+  }
+  window.socket.onmessage = function(event) {
+    var data = event.data
+    if (data.event) {
+      document.getElementById('videoPlayer').contentWindow.postMessage(data, '*')
+    }
+  }
+</script>
