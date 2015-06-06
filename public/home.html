@@ -30,9 +30,12 @@
     <div class="field">
       <label>用户名</label><input ng-model="user.name" placeholder="你的用户名写这里！" type="text" />
     </div>
+    <div class="field">
+      <label>密码</label><input ng-model="user.password" placeholder="这里写密码喵~" type="password" />
+    </div>
   </form>
   <div class="actions">
-    <a class="button ui green submit">注册</a>
+    <a class="button ui green submit" ng-click="regist()">注册</a>
   </div>
 </div>
 <style>

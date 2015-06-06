@@ -25,7 +25,10 @@ footer
     .field
       label 用户名
       input type="text" placeholder="你的用户名写这里！" ng-model="user.name"
+    .field
+      label 密码
+      input type="password" placeholder="这里写密码喵~" ng-model="user.password"
   .actions
-    a.button.ui.green.submit 注册
+    a.button.ui.green.submit ng-click="regist()" 注册
 style
   | body {overflow:hidden !important;}

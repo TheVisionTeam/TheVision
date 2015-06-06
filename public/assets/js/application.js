@@ -16,10 +16,14 @@ window.angularApp.config([
   '$routeProvider', function($routeProvider) {
     return $routeProvider.when('/', {
       templateUrl: window.HTMLServer + "/home.html",
-      controller: "IndexController"
+      controller: "IndexController",
+      publicAccess: true
     }).when('/dashboard', {
       templateUrl: window.HTMLServer + "/dashboard.html",
       controller: "DashboardController"
+    }).when('/room/:roomId', {
+      templateUrl: window.HTMLServer + "/show.html",
+      controller: "RoomController"
     }).otherwise({
       redirectTo: '/'
     });
@@ -47,6 +51,20 @@ $(document).ready(function() {
 window.angularApp.controller('IndexController', [
   '$scope', '$rootScope', '$http', '$cookieStore', '$location', function($s, $rs, $http, $cookie, $location) {
     $s.user = {};
+    $s.regist = function() {
+      return $http({
+        method: 'POST',
+        url: APIServer + "/register",
+        data: {
+          username: $s.user.name,
+          password: $s.user.password
+        }
+      }).success(function(data, _) {
+        if (data) {
+          return $location.path('/dashboard');
+        }
+      });
+    };
     return UI.init();
   }
 ]);

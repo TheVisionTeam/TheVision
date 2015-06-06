@@ -1,0 +1,478 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '--verbose' ]
+2 info using npm@1.4.14
+3 info using node@v0.10.29
+4 verbose readDependencies using package.json deps
+5 verbose install where, deps [ '/Users/cassiuschen/Desktop/dev/TheVision',
+5 verbose install   [ 'express',
+5 verbose install     'body-parser',
+5 verbose install     'cookie-parser',
+5 verbose install     'morgan',
+5 verbose install     'serve-favicon',
+5 verbose install     'debug',
+5 verbose install     'jade',
+5 verbose install     'socket.io',
+5 verbose install     'express-session',
+5 verbose install     'connect-busboy',
+5 verbose install     'passport',
+5 verbose install     'passport-local',
+5 verbose install     'MD5',
+5 verbose install     'bower',
+5 verbose install     'gulp-bower-normalize',
+5 verbose install     'del',
+5 verbose install     'gulp',
+5 verbose install     'gulp-autoprefixer',
+5 verbose install     'gulp-cache',
+5 verbose install     'gulp-concat',
+5 verbose install     'gulp-jshint',
+5 verbose install     'gulp-livereload',
+5 verbose install     'gulp-minify-css',
+5 verbose install     'gulp-notify',
+5 verbose install     'gulp-rename',
+5 verbose install     'gulp-ruby-sass',
+5 verbose install     'gulp-uglify',
+5 verbose install     'gulp-coffee',
+5 verbose install     'gulp-slim',
+5 verbose install     'gulp-connect',
+5 verbose install     'gulp-open',
+5 verbose install     'node-webkit-builder' ] ]
+6 info preinstall TheVision@0.0.0
+7 verbose readDependencies using package.json deps
+8 verbose already installed skipping morgan@~1.3.0 /Users/cassiuschen/Desktop/dev/TheVision
+9 verbose already installed skipping body-parser@~1.8.1 /Users/cassiuschen/Desktop/dev/TheVision
+10 verbose already installed skipping serve-favicon@~2.1.3 /Users/cassiuschen/Desktop/dev/TheVision
+11 verbose already installed skipping cookie-parser@~1.3.3 /Users/cassiuschen/Desktop/dev/TheVision
+12 verbose already installed skipping debug@~2.0.0 /Users/cassiuschen/Desktop/dev/TheVision
+13 verbose already installed skipping jade@~1.6.0 /Users/cassiuschen/Desktop/dev/TheVision
+14 verbose already installed skipping socket.io@~1.3.5 /Users/cassiuschen/Desktop/dev/TheVision
+15 verbose cache add [ 'express-session@~1.11.2', null ]
+16 verbose cache add name=undefined spec="express-session@~1.11.2" args=["express-session@~1.11.2",null]
+17 verbose parsed url { protocol: null,
+17 verbose parsed url   slashes: null,
+17 verbose parsed url   auth: null,
+17 verbose parsed url   host: null,
+17 verbose parsed url   port: null,
+17 verbose parsed url   hostname: null,
+17 verbose parsed url   hash: null,
+17 verbose parsed url   search: null,
+17 verbose parsed url   query: null,
+17 verbose parsed url   pathname: 'express-session@~1.11.2',
+17 verbose parsed url   path: 'express-session@~1.11.2',
+17 verbose parsed url   href: 'express-session@~1.11.2' }
+18 verbose cache add name="express-session" spec="~1.11.2" args=["express-session","~1.11.2"]
+19 verbose parsed url { protocol: null,
+19 verbose parsed url   slashes: null,
+19 verbose parsed url   auth: null,
+19 verbose parsed url   host: null,
+19 verbose parsed url   port: null,
+19 verbose parsed url   hostname: null,
+19 verbose parsed url   hash: null,
+19 verbose parsed url   search: null,
+19 verbose parsed url   query: null,
+19 verbose parsed url   pathname: '~1.11.2',
+19 verbose parsed url   path: '~1.11.2',
+19 verbose parsed url   href: '~1.11.2' }
+20 verbose addNamed [ 'express-session', '~1.11.2' ]
+21 verbose addNamed [ null, '>=1.11.2-0 <1.12.0-0' ]
+22 verbose cache add [ 'passport-local@~1.0.0', null ]
+23 verbose cache add name=undefined spec="passport-local@~1.0.0" args=["passport-local@~1.0.0",null]
+24 verbose parsed url { protocol: null,
+24 verbose parsed url   slashes: null,
+24 verbose parsed url   auth: null,
+24 verbose parsed url   host: null,
+24 verbose parsed url   port: null,
+24 verbose parsed url   hostname: null,
+24 verbose parsed url   hash: null,
+24 verbose parsed url   search: null,
+24 verbose parsed url   query: null,
+24 verbose parsed url   pathname: 'passport-local@~1.0.0',
+24 verbose parsed url   path: 'passport-local@~1.0.0',
+24 verbose parsed url   href: 'passport-local@~1.0.0' }
+25 verbose cache add [ 'connect-busboy@~0.2.9', null ]
+26 verbose cache add name=undefined spec="connect-busboy@~0.2.9" args=["connect-busboy@~0.2.9",null]
+27 verbose parsed url { protocol: null,
+27 verbose parsed url   slashes: null,
+27 verbose parsed url   auth: null,
+27 verbose parsed url   host: null,
+27 verbose parsed url   port: null,
+27 verbose parsed url   hostname: null,
+27 verbose parsed url   hash: null,
+27 verbose parsed url   search: null,
+27 verbose parsed url   query: null,
+27 verbose parsed url   pathname: 'connect-busboy@~0.2.9',
+27 verbose parsed url   path: 'connect-busboy@~0.2.9',
+27 verbose parsed url   href: 'connect-busboy@~0.2.9' }
+28 verbose cache add [ 'MD5@~1.2.2', null ]
+29 verbose cache add name=undefined spec="MD5@~1.2.2" args=["MD5@~1.2.2",null]
+30 verbose parsed url { protocol: null,
+30 verbose parsed url   slashes: null,
+30 verbose parsed url   auth: null,
+30 verbose parsed url   host: null,
+30 verbose parsed url   port: null,
+30 verbose parsed url   hostname: null,
+30 verbose parsed url   hash: null,
+30 verbose parsed url   search: null,
+30 verbose parsed url   query: null,
+30 verbose parsed url   pathname: 'MD5@~1.2.2',
+30 verbose parsed url   path: 'MD5@~1.2.2',
+30 verbose parsed url   href: 'MD5@~1.2.2' }
+31 verbose cache add [ 'passport@~0.2.2', null ]
+32 verbose cache add name=undefined spec="passport@~0.2.2" args=["passport@~0.2.2",null]
+33 verbose parsed url { protocol: null,
+33 verbose parsed url   slashes: null,
+33 verbose parsed url   auth: null,
+33 verbose parsed url   host: null,
+33 verbose parsed url   port: null,
+33 verbose parsed url   hostname: null,
+33 verbose parsed url   hash: null,
+33 verbose parsed url   search: null,
+33 verbose parsed url   query: null,
+33 verbose parsed url   pathname: 'passport@~0.2.2',
+33 verbose parsed url   path: 'passport@~0.2.2',
+33 verbose parsed url   href: 'passport@~0.2.2' }
+34 verbose already installed skipping bower@^1.3.12 /Users/cassiuschen/Desktop/dev/TheVision
+35 verbose already installed skipping gulp-bower-normalize@^1.0.3 /Users/cassiuschen/Desktop/dev/TheVision
+36 verbose already installed skipping del@^1.1.1 /Users/cassiuschen/Desktop/dev/TheVision
+37 verbose already installed skipping gulp@^3.8.10 /Users/cassiuschen/Desktop/dev/TheVision
+38 verbose already installed skipping gulp-autoprefixer@^2.0.0 /Users/cassiuschen/Desktop/dev/TheVision
+39 silly lockFile 40bb85ba-express-session-1-11-2 express-session@~1.11.2
+40 verbose lock express-session@~1.11.2 /Users/cassiuschen/.npm/40bb85ba-express-session-1-11-2.lock
+41 verbose cache add name="passport-local" spec="~1.0.0" args=["passport-local","~1.0.0"]
+42 verbose parsed url { protocol: null,
+42 verbose parsed url   slashes: null,
+42 verbose parsed url   auth: null,
+42 verbose parsed url   host: null,
+42 verbose parsed url   port: null,
+42 verbose parsed url   hostname: null,
+42 verbose parsed url   hash: null,
+42 verbose parsed url   search: null,
+42 verbose parsed url   query: null,
+42 verbose parsed url   pathname: '~1.0.0',
+42 verbose parsed url   path: '~1.0.0',
+42 verbose parsed url   href: '~1.0.0' }
+43 verbose addNamed [ 'passport-local', '~1.0.0' ]
+44 verbose addNamed [ null, '>=1.0.0-0 <1.1.0-0' ]
+45 silly lockFile 84af7143-passport-local-1-0-0 passport-local@~1.0.0
+46 verbose lock passport-local@~1.0.0 /Users/cassiuschen/.npm/84af7143-passport-local-1-0-0.lock
+47 verbose cache add name="connect-busboy" spec="~0.2.9" args=["connect-busboy","~0.2.9"]
+48 verbose parsed url { protocol: null,
+48 verbose parsed url   slashes: null,
+48 verbose parsed url   auth: null,
+48 verbose parsed url   host: null,
+48 verbose parsed url   port: null,
+48 verbose parsed url   hostname: null,
+48 verbose parsed url   hash: null,
+48 verbose parsed url   search: null,
+48 verbose parsed url   query: null,
+48 verbose parsed url   pathname: '~0.2.9',
+48 verbose parsed url   path: '~0.2.9',
+48 verbose parsed url   href: '~0.2.9' }
+49 verbose addNamed [ 'connect-busboy', '~0.2.9' ]
+50 verbose addNamed [ null, '>=0.2.9-0 <0.3.0-0' ]
+51 silly lockFile 748a032a-connect-busboy-0-2-9 connect-busboy@~0.2.9
+52 verbose lock connect-busboy@~0.2.9 /Users/cassiuschen/.npm/748a032a-connect-busboy-0-2-9.lock
+53 verbose cache add name="MD5" spec="~1.2.2" args=["MD5","~1.2.2"]
+54 verbose parsed url { protocol: null,
+54 verbose parsed url   slashes: null,
+54 verbose parsed url   auth: null,
+54 verbose parsed url   host: null,
+54 verbose parsed url   port: null,
+54 verbose parsed url   hostname: null,
+54 verbose parsed url   hash: null,
+54 verbose parsed url   search: null,
+54 verbose parsed url   query: null,
+54 verbose parsed url   pathname: '~1.2.2',
+54 verbose parsed url   path: '~1.2.2',
+54 verbose parsed url   href: '~1.2.2' }
+55 verbose addNamed [ 'MD5', '~1.2.2' ]
+56 verbose addNamed [ null, '>=1.2.2-0 <1.3.0-0' ]
+57 silly lockFile 0509c70c-MD5-1-2-2 MD5@~1.2.2
+58 verbose lock MD5@~1.2.2 /Users/cassiuschen/.npm/0509c70c-MD5-1-2-2.lock
+59 verbose cache add name="passport" spec="~0.2.2" args=["passport","~0.2.2"]
+60 verbose parsed url { protocol: null,
+60 verbose parsed url   slashes: null,
+60 verbose parsed url   auth: null,
+60 verbose parsed url   host: null,
+60 verbose parsed url   port: null,
+60 verbose parsed url   hostname: null,
+60 verbose parsed url   hash: null,
+60 verbose parsed url   search: null,
+60 verbose parsed url   query: null,
+60 verbose parsed url   pathname: '~0.2.2',
+60 verbose parsed url   path: '~0.2.2',
+60 verbose parsed url   href: '~0.2.2' }
+61 verbose addNamed [ 'passport', '~0.2.2' ]
+62 verbose addNamed [ null, '>=0.2.2-0 <0.3.0-0' ]
+63 silly lockFile 8f137615-passport-0-2-2 passport@~0.2.2
+64 verbose lock passport@~0.2.2 /Users/cassiuschen/.npm/8f137615-passport-0-2-2.lock
+65 verbose already installed skipping gulp-cache@^0.2.4 /Users/cassiuschen/Desktop/dev/TheVision
+66 verbose already installed skipping gulp-concat@^2.4.3 /Users/cassiuschen/Desktop/dev/TheVision
+67 verbose already installed skipping gulp-jshint@^1.9.0 /Users/cassiuschen/Desktop/dev/TheVision
+68 verbose already installed skipping gulp-livereload@^3.2.0 /Users/cassiuschen/Desktop/dev/TheVision
+69 verbose already installed skipping gulp-minify-css@^0.3.11 /Users/cassiuschen/Desktop/dev/TheVision
+70 verbose already installed skipping gulp-notify@^2.1.0 /Users/cassiuschen/Desktop/dev/TheVision
+71 verbose already installed skipping gulp-rename@^1.2.0 /Users/cassiuschen/Desktop/dev/TheVision
+72 verbose already installed skipping gulp-ruby-sass@^0.7.1 /Users/cassiuschen/Desktop/dev/TheVision
+73 verbose already installed skipping gulp-uglify@^1.0.2 /Users/cassiuschen/Desktop/dev/TheVision
+74 verbose already installed skipping gulp-coffee@^2.2.0 /Users/cassiuschen/Desktop/dev/TheVision
+75 verbose already installed skipping gulp-slim@0.0.13 /Users/cassiuschen/Desktop/dev/TheVision
+76 verbose already installed skipping gulp-connect@^2.2.0 /Users/cassiuschen/Desktop/dev/TheVision
+77 verbose already installed skipping gulp-open@^0.3.1 /Users/cassiuschen/Desktop/dev/TheVision
+78 verbose already installed skipping node-webkit-builder@^0.3.2 /Users/cassiuschen/Desktop/dev/TheVision
+79 verbose already installed skipping express@~4.9.0 /Users/cassiuschen/Desktop/dev/TheVision
+80 silly addNameRange { name: 'express-session',
+80 silly addNameRange   range: '>=1.11.2-0 <1.12.0-0',
+80 silly addNameRange   hasData: false }
+81 silly addNameRange { name: 'passport-local',
+81 silly addNameRange   range: '>=1.0.0-0 <1.1.0-0',
+81 silly addNameRange   hasData: false }
+82 silly addNameRange { name: 'connect-busboy',
+82 silly addNameRange   range: '>=0.2.9-0 <0.3.0-0',
+82 silly addNameRange   hasData: false }
+83 silly addNameRange { name: 'MD5', range: '>=1.2.2-0 <1.3.0-0', hasData: false }
+84 silly addNameRange { name: 'passport', range: '>=0.2.2-0 <0.3.0-0', hasData: false }
+85 verbose url raw connect-busboy
+86 verbose url resolving [ 'https://registry.npmjs.org/', './connect-busboy' ]
+87 verbose url resolved https://registry.npmjs.org/connect-busboy
+88 info trying registry request attempt 1 at 01:03:20
+89 verbose etag "ALO1GGXZW07OR0XELUVA73ESU"
+90 http GET https://registry.npmjs.org/connect-busboy
+91 verbose url raw MD5
+92 verbose url resolving [ 'https://registry.npmjs.org/', './MD5' ]
+93 verbose url resolved https://registry.npmjs.org/MD5
+94 info trying registry request attempt 1 at 01:03:20
+95 verbose etag "A7JAWB0HFXAO8Y2H6T8AFQ4QX"
+96 http GET https://registry.npmjs.org/MD5
+97 verbose url raw express-session
+98 verbose url resolving [ 'https://registry.npmjs.org/', './express-session' ]
+99 verbose url resolved https://registry.npmjs.org/express-session
+100 info trying registry request attempt 1 at 01:03:20
+101 verbose etag "4MMNVM1H1OVCCINT7EUWNHBZH"
+102 http GET https://registry.npmjs.org/express-session
+103 verbose url raw passport-local
+104 verbose url resolving [ 'https://registry.npmjs.org/', './passport-local' ]
+105 verbose url resolved https://registry.npmjs.org/passport-local
+106 info trying registry request attempt 1 at 01:03:20
+107 verbose etag "AAPH6UEMFPVMQXFSI1PWZ224H"
+108 http GET https://registry.npmjs.org/passport-local
+109 verbose url raw passport
+110 verbose url resolving [ 'https://registry.npmjs.org/', './passport' ]
+111 verbose url resolved https://registry.npmjs.org/passport
+112 info trying registry request attempt 1 at 01:03:20
+113 verbose etag "8OCAE2Q108L18ZHZ5HG743AJH"
+114 http GET https://registry.npmjs.org/passport
+115 http 304 https://registry.npmjs.org/passport-local
+116 silly registry.get cb [ 304,
+116 silly registry.get   { date: 'Sat, 06 Jun 2015 17:03:20 GMT',
+116 silly registry.get     via: '1.1 varnish',
+116 silly registry.get     'cache-control': 'max-age=60',
+116 silly registry.get     etag: '"AAPH6UEMFPVMQXFSI1PWZ224H"',
+116 silly registry.get     age: '25',
+116 silly registry.get     connection: 'keep-alive',
+116 silly registry.get     'x-served-by': 'cache-lax1422-LAX',
+116 silly registry.get     'x-cache': 'HIT',
+116 silly registry.get     'x-cache-hits': '1',
+116 silly registry.get     'x-timer': 'S1433610200.748966,VS0,VE0',
+116 silly registry.get     vary: 'Accept' } ]
+117 verbose etag passport-local from cache
+118 http 304 https://registry.npmjs.org/passport
+119 silly registry.get cb [ 304,
+119 silly registry.get   { date: 'Sat, 06 Jun 2015 17:03:20 GMT',
+119 silly registry.get     via: '1.1 varnish',
+119 silly registry.get     'cache-control': 'max-age=60',
+119 silly registry.get     etag: '"8OCAE2Q108L18ZHZ5HG743AJH"',
+119 silly registry.get     age: '25',
+119 silly registry.get     connection: 'keep-alive',
+119 silly registry.get     'x-served-by': 'cache-lax1433-LAX',
+119 silly registry.get     'x-cache': 'HIT',
+119 silly registry.get     'x-cache-hits': '1',
+119 silly registry.get     'x-timer': 'S1433610200.749949,VS0,VE0',
+119 silly registry.get     vary: 'Accept' } ]
+120 verbose etag passport from cache
+121 silly addNameRange number 2 { name: 'passport', range: '>=0.2.2-0 <0.3.0-0', hasData: true }
+122 silly addNameRange versions [ 'passport',
+122 silly addNameRange   [ '0.1.0',
+122 silly addNameRange     '0.1.1',
+122 silly addNameRange     '0.1.2',
+122 silly addNameRange     '0.1.3',
+122 silly addNameRange     '0.1.4',
+122 silly addNameRange     '0.1.5',
+122 silly addNameRange     '0.1.6',
+122 silly addNameRange     '0.1.7',
+122 silly addNameRange     '0.1.8',
+122 silly addNameRange     '0.1.9',
+122 silly addNameRange     '0.1.10',
+122 silly addNameRange     '0.1.11',
+122 silly addNameRange     '0.1.12',
+122 silly addNameRange     '0.1.13',
+122 silly addNameRange     '0.1.14',
+122 silly addNameRange     '0.1.15',
+122 silly addNameRange     '0.1.16',
+122 silly addNameRange     '0.1.17',
+122 silly addNameRange     '0.1.18',
+122 silly addNameRange     '0.2.0',
+122 silly addNameRange     '0.2.1',
+122 silly addNameRange     '0.2.2' ] ]
+123 verbose addNamed [ 'passport', '0.2.2' ]
+124 verbose addNamed [ '0.2.2', '0.2.2' ]
+125 silly lockFile e0584552-passport-0-2-2 passport@0.2.2
+126 verbose lock passport@0.2.2 /Users/cassiuschen/.npm/e0584552-passport-0-2-2.lock
+127 silly addNameRange number 2 { name: 'passport-local',
+127 silly addNameRange   range: '>=1.0.0-0 <1.1.0-0',
+127 silly addNameRange   hasData: true }
+128 silly addNameRange versions [ 'passport-local',
+128 silly addNameRange   [ '0.1.0',
+128 silly addNameRange     '0.1.1',
+128 silly addNameRange     '0.1.2',
+128 silly addNameRange     '0.1.3',
+128 silly addNameRange     '0.1.4',
+128 silly addNameRange     '0.1.5',
+128 silly addNameRange     '0.1.6',
+128 silly addNameRange     '1.0.0' ] ]
+129 verbose addNamed [ 'passport-local', '1.0.0' ]
+130 verbose addNamed [ '1.0.0', '1.0.0' ]
+131 silly lockFile 8defd22e-passport-local-1-0-0 passport-local@1.0.0
+132 verbose lock passport-local@1.0.0 /Users/cassiuschen/.npm/8defd22e-passport-local-1-0-0.lock
+133 silly lockFile e0584552-passport-0-2-2 passport@0.2.2
+134 silly lockFile e0584552-passport-0-2-2 passport@0.2.2
+135 silly lockFile 8defd22e-passport-local-1-0-0 passport-local@1.0.0
+136 silly lockFile 8defd22e-passport-local-1-0-0 passport-local@1.0.0
+137 silly lockFile 8f137615-passport-0-2-2 passport@~0.2.2
+138 silly lockFile 8f137615-passport-0-2-2 passport@~0.2.2
+139 silly lockFile 84af7143-passport-local-1-0-0 passport-local@~1.0.0
+140 silly lockFile 84af7143-passport-local-1-0-0 passport-local@~1.0.0
+141 http 304 https://registry.npmjs.org/express-session
+142 silly registry.get cb [ 304,
+142 silly registry.get   { date: 'Sat, 06 Jun 2015 17:03:20 GMT',
+142 silly registry.get     via: '1.1 varnish',
+142 silly registry.get     'cache-control': 'max-age=60',
+142 silly registry.get     etag: '"4MMNVM1H1OVCCINT7EUWNHBZH"',
+142 silly registry.get     age: '0',
+142 silly registry.get     connection: 'keep-alive',
+142 silly registry.get     'x-served-by': 'cache-lax1421-LAX',
+142 silly registry.get     'x-cache': 'HIT',
+142 silly registry.get     'x-cache-hits': '1',
+142 silly registry.get     'x-timer': 'S1433610200.812118,VS0,VE46',
+142 silly registry.get     vary: 'Accept' } ]
+143 verbose etag express-session from cache
+144 http 304 https://registry.npmjs.org/MD5
+145 silly registry.get cb [ 304,
+145 silly registry.get   { date: 'Sat, 06 Jun 2015 17:03:20 GMT',
+145 silly registry.get     via: '1.1 varnish',
+145 silly registry.get     'cache-control': 'max-age=60',
+145 silly registry.get     etag: '"A7JAWB0HFXAO8Y2H6T8AFQ4QX"',
+145 silly registry.get     age: '0',
+145 silly registry.get     connection: 'keep-alive',
+145 silly registry.get     'x-served-by': 'cache-lax1431-LAX',
+145 silly registry.get     'x-cache': 'HIT',
+145 silly registry.get     'x-cache-hits': '1',
+145 silly registry.get     'x-timer': 'S1433610200.815995,VS0,VE47',
+145 silly registry.get     vary: 'Accept' } ]
+146 verbose etag MD5 from cache
+147 silly addNameRange number 2 { name: 'express-session',
+147 silly addNameRange   range: '>=1.11.2-0 <1.12.0-0',
+147 silly addNameRange   hasData: true }
+148 silly addNameRange versions [ 'express-session',
+148 silly addNameRange   [ '1.0.0',
+148 silly addNameRange     '1.0.1',
+148 silly addNameRange     '1.0.2',
+148 silly addNameRange     '1.0.3',
+148 silly addNameRange     '1.0.4',
+148 silly addNameRange     '1.1.0',
+148 silly addNameRange     '1.2.0',
+148 silly addNameRange     '1.2.1',
+148 silly addNameRange     '1.3.0',
+148 silly addNameRange     '1.3.1',
+148 silly addNameRange     '1.4.0',
+148 silly addNameRange     '1.5.0',
+148 silly addNameRange     '1.5.1',
+148 silly addNameRange     '1.5.2',
+148 silly addNameRange     '1.6.0',
+148 silly addNameRange     '1.6.1',
+148 silly addNameRange     '1.6.2',
+148 silly addNameRange     '1.6.3',
+148 silly addNameRange     '1.6.4',
+148 silly addNameRange     '1.6.5',
+148 silly addNameRange     '1.7.0',
+148 silly addNameRange     '1.7.1',
+148 silly addNameRange     '1.7.2',
+148 silly addNameRange     '1.7.3',
+148 silly addNameRange     '1.7.4',
+148 silly addNameRange     '1.7.5',
+148 silly addNameRange     '1.7.6',
+148 silly addNameRange     '1.8.0',
+148 silly addNameRange     '1.8.1',
+148 silly addNameRange     '1.8.2',
+148 silly addNameRange     '1.9.0',
+148 silly addNameRange     '1.9.1',
+148 silly addNameRange     '1.9.2',
+148 silly addNameRange     '1.9.3',
+148 silly addNameRange     '1.10.0',
+148 silly addNameRange     '1.10.1',
+148 silly addNameRange     '1.10.2',
+148 silly addNameRange     '1.10.3',
+148 silly addNameRange     '1.10.4',
+148 silly addNameRange     '1.11.0',
+148 silly addNameRange     '1.11.1',
+148 silly addNameRange     '1.11.2' ] ]
+149 verbose addNamed [ 'express-session', '1.11.2' ]
+150 verbose addNamed [ '1.11.2', '1.11.2' ]
+151 silly lockFile 185c5f9f-express-session-1-11-2 express-session@1.11.2
+152 verbose lock express-session@1.11.2 /Users/cassiuschen/.npm/185c5f9f-express-session-1-11-2.lock
+153 silly addNameRange number 2 { name: 'MD5', range: '>=1.2.2-0 <1.3.0-0', hasData: true }
+154 silly addNameRange versions [ 'MD5',
+154 silly addNameRange   [ '0.0.0',
+154 silly addNameRange     '1.0.0',
+154 silly addNameRange     '1.0.1',
+154 silly addNameRange     '1.0.2',
+154 silly addNameRange     '1.0.3',
+154 silly addNameRange     '1.1.0',
+154 silly addNameRange     '1.2.0',
+154 silly addNameRange     '1.2.1',
+154 silly addNameRange     '1.2.2' ] ]
+155 verbose addNamed [ 'MD5', '1.2.2' ]
+156 verbose addNamed [ '1.2.2', '1.2.2' ]
+157 silly lockFile 46587445-MD5-1-2-2 MD5@1.2.2
+158 verbose lock MD5@1.2.2 /Users/cassiuschen/.npm/46587445-MD5-1-2-2.lock
+159 silly lockFile 185c5f9f-express-session-1-11-2 express-session@1.11.2
+160 silly lockFile 185c5f9f-express-session-1-11-2 express-session@1.11.2
+161 silly lockFile 46587445-MD5-1-2-2 MD5@1.2.2
+162 silly lockFile 46587445-MD5-1-2-2 MD5@1.2.2
+163 silly lockFile 40bb85ba-express-session-1-11-2 express-session@~1.11.2
+164 silly lockFile 40bb85ba-express-session-1-11-2 express-session@~1.11.2
+165 silly lockFile 0509c70c-MD5-1-2-2 MD5@~1.2.2
+166 silly lockFile 0509c70c-MD5-1-2-2 MD5@~1.2.2
+167 http 304 https://registry.npmjs.org/connect-busboy
+168 silly registry.get cb [ 304,
+168 silly registry.get   { date: 'Sat, 06 Jun 2015 17:03:20 GMT',
+168 silly registry.get     via: '1.1 varnish',
+168 silly registry.get     'cache-control': 'max-age=60',
+168 silly registry.get     etag: '"ALO1GGXZW07OR0XELUVA73ESU"',
+168 silly registry.get     age: '0',
+168 silly registry.get     connection: 'keep-alive',
+168 silly registry.get     'x-served-by': 'cache-lax1423-LAX',
+168 silly registry.get     'x-cache': 'MISS',
+168 silly registry.get     'x-cache-hits': '0',
+168 silly registry.get     'x-timer': 'S1433610200.818681,VS0,VE83',
+168 silly registry.get     vary: 'Accept' } ]
+169 verbose etag connect-busboy from cache
+170 silly addNameRange number 2 { name: 'connect-busboy',
+170 silly addNameRange   range: '>=0.2.9-0 <0.3.0-0',
+170 silly addNameRange   hasData: true }
+171 silly addNameRange versions [ 'connect-busboy', [ '0.0.1', '0.0.2' ] ]
+172 silly lockFile 748a032a-connect-busboy-0-2-9 connect-busboy@~0.2.9
+173 silly lockFile 748a032a-connect-busboy-0-2-9 connect-busboy@~0.2.9
+174 error notarget No compatible version found: connect-busboy@'>=0.2.9-0 <0.3.0-0'
+174 error notarget Valid install targets:
+174 error notarget ["0.0.1","0.0.2"]
+174 error notarget
+174 error notarget This is most likely not a problem with npm itself.
+174 error notarget In most cases you or one of your dependencies are requesting
+174 error notarget a package version that doesn't exist.
+175 error System Darwin 14.4.0
+176 error command "node" "/usr/local/bin/npm" "install" "--verbose"
+177 error cwd /Users/cassiuschen/Desktop/dev/TheVision
+178 error node -v v0.10.29
+179 error npm -v 1.4.14
+180 error code ETARGET
+181 verbose exit [ 1, true ]

@@ -24,10 +24,15 @@ window.angularApp.config [
 			.when '/',
 				templateUrl: "#{window.HTMLServer}/home.html"
 				controller: "IndexController"
+				publicAccess: true
 
 			.when '/dashboard',
 				templateUrl: "#{window.HTMLServer}/dashboard.html"
 				controller: "DashboardController"
+
+			.when '/room/:roomId',
+				templateUrl: "#{window.HTMLServer}/show.html"
+				controller: "RoomController"
 
 			.otherwise
 				redirectTo: '/'
