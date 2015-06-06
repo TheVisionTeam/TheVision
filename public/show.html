@@ -23,7 +23,7 @@
   			window.socket = new WebSocket('ws://211.68.72.88:3001')
   		}
   		socket.onmessage = function(event) {
-  			var data = event.data
+  			var data = JSON.parse(event.data)
   			if (data.event) {
   				document.getElementById('videoPlayer').contentWindow.postMessage(data, '*')
   			}
