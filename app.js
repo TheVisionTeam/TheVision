@@ -43,21 +43,23 @@ io.on('connection', function(socket){
 		if (go.roomList[roomID] && !go.roomList[roomID].anchorSocket) {
 			// add socket: {roomID, userType}
 			go.roomList[roomID].anchorSocket = socket.id;
-			socketList[socket.id] = {
+			go.socketList[socket.id] = {
 				userType: "anchor",
 				IP: msg.IP,
 				roomID: roomID
 			};
 		}
+		console.dir(go);
 	});
 	socket.on('join roomID', function (msg) {
 		var roomID = msg.roomID;
 		// check if roomID exist & no anchor
 		if (go.roomList[roomID] && go.roomList[roomID].anchorSocket) {
 			// add socket: {userType}
-			socketList[socket.id] = {
+			go.socketList[socket.id] = {
 				userType: "audience",
-				IP: msg.IP
+				IP: msg.IP,
+				roomID: roomID
 			};
 			// add user to room audience list
 			go.roomList[roomID].audience.push(socket.id);
@@ -70,37 +72,46 @@ io.on('connection', function(socket){
 			}
 			var anchorSocket = go.roomList[roomID].anchorSocket;
 			io.to(anchorSocket).emit("audience change", anchorSocket);
+			
+			console.dir(go);
 		}
 	})
 	socket.on('disconnect', function(){
 		console.log('user disconnected');
 
 		// check user type
-		// if anchor: delete room and socket
-		if (go.socketList[socket.id].userType === "anchor") {
-			go.roomList[socketList[socket.id].roomID] = null;
-			go.socketList[socket.id] = null;
-		} else {
-		// if audience: remove from audience list, and emit to anchor
-			var roomID = go.socketList[socket.id].roomID;
-			// remove from audience list
-			var index = go.roomList[roomID].audience.indexOf(socket.id);
-			if (index > -1) {
-				go.roomList[roomID].audience.splice(index, 1);
-			}
-			// remove socket
-			go.socketList[socket.id] = null;
+		if (go.socketList[socket.id]) {
+			// if anchor: delete room and socket
+			if (go.socketList[socket.id].userType === "anchor") {
+				go.roomList[go.socketList[socket.id].roomID] = null;
+				go.socketList[socket.id] = null;
+			} else {
+			// if audience: remove from audience list, and emit to anchor
+				var roomID = go.socketList[socket.id].roomID;
+				// remove from audience list
+				var index = go.roomList[roomID].audience.indexOf(socket.id);
+				if (index > -1) {
+					go.roomList[roomID].audience.splice(index, 1);
+				}
+				// remove socket
+				go.socketList[socket.id] = null;
 
-			// emit to anchor
-			var newAudience = [];
-			for (var i = 0; i < go.roomList[roomID].audience.length; ++i) {
-				var socketID = go.roomList[roomID].audience[i];
-				newAudience.push(go.socketList[socketID].IP);
+				// emit to anchor
+				var newAudience = [];
+				for (var i = 0; i < go.roomList[roomID].audience.length; ++i) {
+					var socketID = go.roomList[roomID].audience[i];
+					newAudience.push(go.socketList[socketID].IP);
+				}
+				var anchorSocket = go.roomList[roomID].anchorSocket;
+				io.to(anchorSocket).emit("audience change", anchorSocket);
 			}
-			var anchorSocket = go.roomList[roomID].anchorSocket;
-			io.to(anchorSocket).emit("audience change", anchorSocket);
+
+			console.dir(go);
 		}
 	});
+});
+http.listen(3001, function() {
+	console.log("socket listen at 3001");
 });
 
 // error handlers

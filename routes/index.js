@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var go = require('globalObjecct');
+var go = require('../globalObject');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
 });
 
 router.post("/newRoom", function(req, res) {
-	var roomID = new Date() + "";
+	var roomID = new Date().toString(36);;
 	go.roomList[roomID] = {
 		roomName: req.body.roomName,
 		roomDesc: req.body.roomDesc,
