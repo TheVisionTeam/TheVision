@@ -1,2 +1,9 @@
 node_modules
 designing
+
+.DS_Store
+/.idea
+/.sass-cache
+/cache
+
+/vendor

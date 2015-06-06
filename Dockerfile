@@ -20,6 +20,7 @@ RUN mkdir -pv /var/data
 WORKDIR /var/data
 RUN mkdir -pv log
 ADD ./ /var/data/vision
+ADD nginx.conf /etc/nginx/conf.d/vision.conf
 WORKDIR /var/data/vision
 RUN npm install --verbose
 RUN service nginx restart
