@@ -1,0 +1,25 @@
+{
+  "name": "TheVision",
+  "version": "0.0.0",
+  "homepage": "https://github.com/TheVisionTeam/TheVision",
+  "authors": [
+    "cassiuschen <chzsh1995@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-route": "~1.4.0",
+    "jquery": "~2.1.4",
+    "underscore": "~1.8.3",
+    "modernizr": "~2.8.3",
+    "angular-sanitize": "~1.4.0",
+    "semantic-ui": "~1.12.3"
+  }
+}

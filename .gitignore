@@ -1,3 +1,9 @@
 node_modules
 designing
 test
+.DS_Store
+/.idea
+/.sass-cache
+/cache
+
+/vendor
