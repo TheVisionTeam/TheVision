@@ -47,19 +47,19 @@ router.get('/logout', function (req, res) {
 	res.redirect('/');
 });
 
-router.post("/newRoom", function (req, res) {
-	// if (!req.user) {
-	// 	res.status(401);
-	// } else {
-		var roomID = new Date().toISOString();
-		go.roomList[roomID] = {
-			roomName: req.body.roomName,
-			roomDesc: req.body.roomDesc,
-			audience: []
-		};
-		res.send(roomID);
-	// }
-});
+// router.post("/newRoom", function (req, res) {
+// 	if (!req.user) {
+// 		res.status(401);
+// 	} else {
+// 		var roomID = new Date().toISOString();
+// 		go.roomList[roomID] = {
+// 			roomName: req.body.roomName,
+// 			roomDesc: req.body.roomDesc,
+// 			audience: []
+// 		};
+// 		res.send(roomID);
+// 	}
+// });
 
 router.post("/friend/add", function (req, res) {
 	if (!req.user) {

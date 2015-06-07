@@ -90,10 +90,13 @@ io.on('connection', function(socket){
 	console.log('a user connected');
 	socket.on('new roomID', function (msg) {
 		var roomID = msg.roomID;
-		// check if roomID exist & no anchor
-		if (go.roomList[roomID] && !go.roomList[roomID].anchorSocket) {
+		// check if roomID doesn't exist
+		if (!go.roomList[roomID]) {
+			go.roomList[roomID] = {
+				anchorSocket: socket.id
+				audience: []
+			};
 			// add socket: {roomID, userType}
-			go.roomList[roomID].anchorSocket = socket.id;
 			go.socketList[socket.id] = {
 				userType: "anchor",
 				IP: msg.IP,
