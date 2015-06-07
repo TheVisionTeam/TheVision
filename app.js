@@ -89,6 +89,8 @@ app.use(function(req, res, next) {
 io.on('connection', function(socket){
 	console.log('a user connected');
 	socket.on('new roomID', function (msg) {
+		console.log("CREATE ROOM");
+		console.log(msg);
 		var roomID = msg.roomID;
 		// check if roomID exist & no anchor
 		if (go.roomList[roomID] && !go.roomList[roomID].anchorSocket) {

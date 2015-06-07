@@ -29,7 +29,8 @@ window.angularApp.run([
 ]);
 
 window.angularApp.config([
-  '$routeProvider', function($routeProvider) {
+  '$routeProvider', '$sceProvider', function($routeProvider, $sce) {
+    $sce.enabled(false);
     return $routeProvider.when('/', {
       templateUrl: window.HTMLServer + "/home.html",
       controller: "IndexController",
@@ -103,9 +104,9 @@ window.angularApp.controller('IndexController', [
     return UI.init();
   }
 ]).controller('RoomController', [
-  '$scope', '$rootScope', '$http', '$cookieStore', '$location', function($s, $rs, $http, $cookie, $location) {
-    $s.location = $location;
-    $s.hasUploader = false;
+  '$scope', '$rootScope', '$http', '$cookieStore', '$location', '$sce', function($s, $rs, $http, $cookie, $location, $sce) {
+    $s.location = $location.hash();
+    $s.hasUploader = !($s.location.length > 0);
     $s.sendDanmu = function() {
       var div, fontSize, socket, top;
       socket = io("http://localhost:3001");
@@ -115,6 +116,7 @@ window.angularApp.controller('IndexController', [
       socket.emit("danmaku", div);
       return $s.message = "";
     };
+    $s.url = "http://127.0.0.1:9200/room/" + ($location.hash());
     return UI.init();
   }
 ]);

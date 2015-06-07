@@ -8,7 +8,6 @@
         i.pot class="{{hasUploader ? 'red' : 'gray'}}"
         | {{hasUploader ? '等待选择片源...' : '正在连接...' }}
     .uploader ng-if="hasUploader"
-      #danmu
       iframe#uploader src="http://127.0.0.1:9200/room/new" width="100%" height="100px"
     .modal.ui.basic#uploaderInfo ng-if="hasUploader"
       .header
@@ -24,7 +23,8 @@
 
 
     .player class="{{hasUploader ? 'hidden' : ''}}"
-      iframe#vedioPlayer src=""
+      #danmu
+      iframe#vedioPlayer src="{{url}}"
       .ui.form
         input type="text" placeholder="请在此输入信息" ng-model="message"
         a.button.ui.primary#submit ng-click="sendDanmu()" 发送
@@ -32,13 +32,18 @@
 
 
 javascript:
+  window.socket = io("http://localhost:3001");
   function receiveMessage(event) {
       console.log(event.data);
       data = event.data
       if (data.hash) {
-        document.getElementById('videoPlayer').src = 'http://127.0.0.1:9200/room#' + data.hash;                                                              
+        document.getElementById('vedioPlayer').src = 'http://127.0.0.1:9200/room/' + data.hash; 
+        window.socket.emit('new roomID',{
+            roomID: data.hash,
+            IP: "233.create"
+        });
         UI.RoomUploaderToggle();
-        $('#url').html(data.hash);
+        $('#url').html('http://127.0.0.1:3000/room#' + data.hash);
       }
       if (data.event) {
         if (!socket) {
@@ -51,21 +56,28 @@ javascript:
       };
   }
   window.addEventListener("message", receiveMessage, false);
-  if (!window.socket) {
-    window.socket = new WebSocket('ws://127.0.0.1:3001')
-  }
-  window.socket.onmessage = function(event) {
+
+  window.socket.on('video control', function(event) {
     var data = event.data
     if (data.event) {
-      document.getElementById('videoPlayer').contentWindow.postMessage(data, '*')
+      document.getElementById('vedioPlayer').contentWindow.postMessage(data, '*')
     }
-  }
+  });
 
+  if(location.hash) {
+    window.socket.emit('join roomID', {
+        roomID: location.hash,
+        IP: "233.233.233.33"
+    });
+  };
+  
+  
   var Dansocket = io("http://localhost:3001");
     Dansocket.on("danmaku", function(msg) {
       var div = $(msg);
       div.animate({right:'100%'});
       $("#danmu").append(div);
     });
+  
 
 

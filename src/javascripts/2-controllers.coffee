@@ -34,9 +34,10 @@ window.angularApp
 		'$http',
 		'$cookieStore',
 		'$location',
-		($s, $rs, $http, $cookie, $location) ->
-			$s.location = $location
-			$s.hasUploader = false
+		'$sce',
+		($s, $rs, $http, $cookie, $location, $sce) ->
+			$s.location = $location.hash()
+			$s.hasUploader = !($s.location.length > 0)
 
 			$s.sendDanmu = ->	
 				socket = io("http://localhost:3001")
@@ -45,6 +46,7 @@ window.angularApp
 				div = '<div class="dm" style="top: "' + top + 'px"; fontSize: "' + fontSize + 'px">' + $s.message + '</div>'
 				socket.emit "danmaku", div
 				$s.message = ""
+			$s.url = "http://127.0.0.1:9200/room/#{$location.hash()}"
 			UI.init()
 
 

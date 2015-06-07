@@ -40,7 +40,9 @@ window.angularApp.run [
 
 window.angularApp.config [
 	'$routeProvider',
-	($routeProvider) ->
+	'$sceProvider'
+	($routeProvider,$sce) ->
+		$sce.enabled(false)
 		$routeProvider
 			.when '/',
 				templateUrl: "#{window.HTMLServer}/home.html"
