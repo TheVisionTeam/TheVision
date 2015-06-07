@@ -105,7 +105,16 @@ window.angularApp.controller('IndexController', [
 ]).controller('RoomController', [
   '$scope', '$rootScope', '$http', '$cookieStore', '$location', function($s, $rs, $http, $cookie, $location) {
     $s.location = $location;
-    $s.hasUploader = !!$location.hash;
+    $s.hasUploader = false;
+    $s.sendDanmu = function() {
+      var div, fontSize, socket, top;
+      socket = io("http://localhost:3001");
+      top = Math.random() * 360;
+      fontSize = Math.random() * 20 + 20;
+      div = '<div class="dm" style="top: "' + top + 'px"; fontSize: "' + fontSize + 'px">' + $s.message + '</div>';
+      socket.emit("danmaku", div);
+      return $s.message = "";
+    };
     return UI.init();
   }
 ]);

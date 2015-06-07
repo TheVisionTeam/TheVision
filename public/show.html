@@ -4,9 +4,10 @@
       <div class="logo small">
         <img src="/assets/images/logo-black.png" />
       </div>
-      直播间<span class="status"><i class="red pot"></i>等待选择片源... {{location}}</span>
+      直播间<span class="status"><i class="pot {{hasUploader ? &#39;red&#39; : &#39;gray&#39;}}"></i>{{hasUploader ? '等待选择片源...' : '正在连接...' }}</span>
     </h1>
     <div class="uploader" ng-if="hasUploader">
+      <div id="danmu"></div>
       <iframe height="100px" id="uploader" src="http://127.0.0.1:9200/room/new" width="100%"></iframe>
     </div>
     <div class="modal ui basic" id="uploaderInfo" ng-if="hasUploader">
@@ -28,10 +29,10 @@
         <a class="ui button basic green fluid inverted">知道啦！</a>
       </div>
     </div>
-    <div class="player hidden">
+    <div class="player {{hasUploader ? &#39;hidden&#39; : &#39;&#39;}}">
       <iframe id="vedioPlayer" src=""></iframe>
       <div class="ui form">
-        <input ng-model="message" placeholder="请在此输入信息" type="text" /><a class="button ui primary">发送</a>
+        <input ng-model="message" placeholder="请在此输入信息" type="text" /><a class="button ui primary" id="submit" ng-click="sendDanmu()">发送</a>
       </div>
     </div>
   </div>
@@ -41,7 +42,7 @@
       console.log(event.data);
       data = event.data
       if (data.hash) {
-        document.getElementById('videoPlayer').src = 'http://127.0.0.1:9200/room#' + data.hash;
+        document.getElementById('videoPlayer').src = 'http://127.0.0.1:9200/room#' + data.hash;                                                              
         UI.RoomUploaderToggle();
         $('#url').html(data.hash);
       }
@@ -65,4 +66,11 @@
       document.getElementById('videoPlayer').contentWindow.postMessage(data, '*')
     }
   }
+  
+  var Dansocket = io("http://localhost:3001");
+    Dansocket.on("danmaku", function(msg) {
+      var div = $(msg);
+      div.animate({right:'100%'});
+      $("#danmu").append(div);
+    });
 </script>

@@ -5,9 +5,10 @@
         img src="/assets/images/logo-black.png"
       |  直播间
       span.status
-        i.red.pot
-        | 等待选择片源... {{location}}
+        i.pot class="{{hasUploader ? 'red' : 'gray'}}"
+        | {{hasUploader ? '等待选择片源...' : '正在连接...' }}
     .uploader ng-if="hasUploader"
+      #danmu
       iframe#uploader src="http://127.0.0.1:9200/room/new" width="100%" height="100px"
     .modal.ui.basic#uploaderInfo ng-if="hasUploader"
       .header
@@ -22,11 +23,11 @@
         a.ui.button.basic.green.fluid.inverted 知道啦！
 
 
-    .player.hidden
+    .player class="{{hasUploader ? 'hidden' : ''}}"
       iframe#vedioPlayer src=""
       .ui.form
         input type="text" placeholder="请在此输入信息" ng-model="message"
-        a.button.ui.primary 发送
+        a.button.ui.primary#submit ng-click="sendDanmu()" 发送
 
 
 
@@ -35,7 +36,7 @@ javascript:
       console.log(event.data);
       data = event.data
       if (data.hash) {
-        document.getElementById('videoPlayer').src = 'http://127.0.0.1:9200/room#' + data.hash;
+        document.getElementById('videoPlayer').src = 'http://127.0.0.1:9200/room#' + data.hash;                                                              
         UI.RoomUploaderToggle();
         $('#url').html(data.hash);
       }
@@ -59,5 +60,12 @@ javascript:
       document.getElementById('videoPlayer').contentWindow.postMessage(data, '*')
     }
   }
+
+  var Dansocket = io("http://localhost:3001");
+    Dansocket.on("danmaku", function(msg) {
+      var div = $(msg);
+      div.animate({right:'100%'});
+      $("#danmu").append(div);
+    });
 
 

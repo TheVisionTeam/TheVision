@@ -185,4 +185,14 @@ footer {
     background-repeat: no-repeat;
     opacity: 1;
   }
+  #danmu {
+      width: 100%;
+      height: 300px;
+    }
+    .dm {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: red;
+    }
 }

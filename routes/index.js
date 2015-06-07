@@ -20,7 +20,9 @@ router.post("/register", function (req, res) {
 		} else {
 			var newUser = new go.database.User({
 				username: username,
-				password:
+				password: MD5(password),
+				requestList: [],
+				friendList: [],
 				online: false,
 				socketID: ""
 			});
