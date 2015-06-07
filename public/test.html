@@ -26,7 +26,7 @@
 		var socket = io("http://localhost:3001");
 		socket.on("danmaku", function(msg) {
 			var div = $(msg);
-			div.animate({right:'100%'});
+			div.animate({right:'100%'}, {speed: "slow"});
 			$("#danmu").append(div);
 		});
 		$("button").click(function(){

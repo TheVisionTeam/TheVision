@@ -83,6 +83,38 @@ define(['jquery', 'p2p', 'utils', 'underscore'], function($, p2p, utils) {
           video.play();
         }
       });
+      function receiveMessage(event) {
+        console.log(event.data) 
+        if (event.data && event.data.event  == 'play') {
+          console.log('start playing')
+          video.play();
+        }
+        if (event.data && event.data.event == 'pause') video.pause();
+        //if (event.data && event.data.event == 'timeupdate') video.currentTime = event.data.currentTime;
+      }
+      window.addEventListener("message", receiveMessage, false);
+      video.addEventListener('play', function() {
+        if (parent) {
+          parent.postMessage({
+            event: 'play'
+          }, '*')
+        };
+      })
+      video.addEventListener('pause', function() {
+        if (parent) {
+          parent.postMessage({
+            event: 'pause'
+          }, '*')
+        };
+      })
+      //video.addEventListener('timeupdate', function() {
+//        if (parent) {
+//          parent.postMessage({
+//            event: 'timeupdate',
+//            value: video.currentTime
+//          }, '*')
+//        };
+//      })
       video.addEventListener('error', function() {
         on_error_time = Math.max(0, video.currentTime);
         console.debug('video: play error on '+on_error_time+', retry in 5s.');

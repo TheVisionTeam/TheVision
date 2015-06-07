@@ -5,6 +5,9 @@
         <img src="/assets/images/logo-black.png" />
       </div>
       直播间<span class="status"><i class="pot {{hasUploader ? &#39;red&#39; : &#39;gray&#39;}}"></i>{{hasUploader ? '等待选择片源...' : '正在连接...' }}</span>
+      <div class="ui floated right action input">
+        <input id="urlShare" placeholder="视频未找到..." type="text" /><button class="ui right labeled icon button"><i class="copy icon"></i>分享</button>
+      </div>
     </h1>
     <div class="uploader" ng-if="hasUploader">
       <iframe height="100px" id="uploader" src="http://127.0.0.1:9200/room/new" width="100%"></iframe>
@@ -50,6 +53,7 @@
         });
         UI.RoomUploaderToggle();
         $('#url').html('<a href="http://127.0.0.1:3000/#/room#' + data.hash + '">http://127.0.0.1:3000/#/room#'+ data.hash + '</a>');
+        $('#urlShare').val('http://127.0.0.1:3000/#/room#' + data.hash);
       }
       if (data.event) {
         window.socket.emit("video control", data);
@@ -58,10 +62,11 @@
   window.addEventListener("message", receiveMessage, false);
   
   window.socket.on('video control', function(event) {
-    var data = event.data
-    if (data.event) {
+    var data = event
+    console.log(data)
+    // if (data.event) {
       document.getElementById('vedioPlayer').contentWindow.postMessage(data, '*')
-    }
+    //}
   });
   
   if(location.hash.split("#").length > 2) {

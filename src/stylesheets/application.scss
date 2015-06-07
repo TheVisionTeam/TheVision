@@ -111,6 +111,34 @@ footer {
       padding-top: 5px;
     }
 
+    .ui.action.input {
+      font-size: 12px;
+      float: right;
+
+      input {
+        width: 450px;
+      }
+
+      @media (max-width: 1000px) {
+        input {
+          width: 300px;
+        }
+      }
+
+      @media (max-width: 700px) {
+        input {
+          width: 180px;
+        }
+      }
+
+      @media (max-width: 300px) {
+        input {
+          width: 50px;
+        }
+      }
+      
+    }
+
     .status {
       display: inline-block;
       margin-left: 10px;

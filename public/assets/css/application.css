@@ -108,6 +108,28 @@ footer img {
 #room .header .logo {
   padding-top: 5px;
 }
+#room .header .ui.action.input {
+  font-size: 12px;
+  float: right;
+}
+#room .header .ui.action.input input {
+  width: 450px;
+}
+@media (max-width: 1000px) {
+  #room .header .ui.action.input input {
+    width: 300px;
+  }
+}
+@media (max-width: 700px) {
+  #room .header .ui.action.input input {
+    width: 180px;
+  }
+}
+@media (max-width: 300px) {
+  #room .header .ui.action.input input {
+    width: 50px;
+  }
+}
 #room .header .status {
   display: inline-block;
   margin-left: 10px;
