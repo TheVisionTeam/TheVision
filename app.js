@@ -92,10 +92,13 @@ io.on('connection', function(socket){
 		console.log("CREATE ROOM");
 		console.log(msg);
 		var roomID = msg.roomID;
-		// check if roomID exist & no anchor
-		if (go.roomList[roomID] && !go.roomList[roomID].anchorSocket) {
+		// check if roomID doesn't exist
+		if (!go.roomList[roomID]) {
+			go.roomList[roomID] = {
+				anchorSocket: socket.id,
+				audience: []
+			};
 			// add socket: {roomID, userType}
-			go.roomList[roomID].anchorSocket = socket.id;
 			go.socketList[socket.id] = {
 				userType: "anchor",
 				IP: msg.IP,
@@ -130,6 +133,7 @@ io.on('connection', function(socket){
 		}
 	});
 	socket.on('video control', function (msg) {
+		console.log("CONTROL GET!")
 		var roomID = go.socketList[socket.id].roomID;
 		go.roomList[roomID].audience.forEach(function (element) {
 			io.to(element).emit("video control", msg);

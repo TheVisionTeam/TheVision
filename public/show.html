@@ -49,16 +49,10 @@
             IP: "233.create"
         });
         UI.RoomUploaderToggle();
-        $('#url').html('http://127.0.0.1:3000/room#' + data.hash);
+        $('#url').html('<a href="http://127.0.0.1:3000/#/room#' + data.hash + '">http://127.0.0.1:3000/#/room#'+ data.hash + '</a>');
       }
       if (data.event) {
-        if (!socket) {
-          window.socket = new WebSocket('ws://127.0.0.1:3001')
-          socket.onopen = function() {
-            socket.send(JSON.stringify(data))
-          }
-        }
-      else socket.send(JSON.stringify(data))
+        window.socket.emit("video control", data);
       };
   }
   window.addEventListener("message", receiveMessage, false);
@@ -70,9 +64,9 @@
     }
   });
   
-  if(location.hash) {
+  if(location.hash.split("#").length > 2) {
     window.socket.emit('join roomID', {
-        roomID: location.hash,
+        roomID: location.hash.split("#")[2],
         IP: "233.233.233.33"
     });
   };
