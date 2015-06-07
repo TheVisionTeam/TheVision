@@ -1,14 +1,30 @@
 window.angularApp = angular.module('TheVision', ['ngRoute', 'ngSanitize', 'ngCookies']);
 
-window.APIServer = "http://127.0.0.1:3000";
+window.APIServer = "";
 
 window.HTMLServer = "../../";
 
 window.angularApp.run([
-  '$rootScope', '$cookieStore', function($rs, $cookie) {
-    return $rs.isSignIn = function() {
-      return !!($cookie.get('user'));
+  '$rootScope', '$cookieStore', '$location', function($rs, $cookie, $location) {
+    $rs.logInUser = function(username) {
+      $cookie.put('username', username);
+      $rs.userStatus.isLogin = true;
+      return $rs.userStatus.name = username;
     };
+    $rs.logOut = function(username) {
+      $cookie["delete"]('username');
+      return $rs.userStatus.isLogIn = false;
+    };
+    if ($cookie.get('username')) {
+      return $rs.userStatus = {
+        isLogIn: true,
+        name: $cookie.get('username')
+      };
+    } else {
+      return $rs.userStatus = {
+        isLogin: false
+      };
+    }
   }
 ]);
 
@@ -17,13 +33,21 @@ window.angularApp.config([
     return $routeProvider.when('/', {
       templateUrl: window.HTMLServer + "/home.html",
       controller: "IndexController",
-      publicAccess: true
+      access: {
+        needLogIn: false
+      }
     }).when('/dashboard', {
       templateUrl: window.HTMLServer + "/dashboard.html",
-      controller: "DashboardController"
-    }).when('/room/:roomId', {
+      controller: "DashboardController",
+      access: {
+        needLogIn: true
+      }
+    }).when('/room', {
       templateUrl: window.HTMLServer + "/show.html",
-      controller: "RoomController"
+      controller: "RoomController",
+      access: {
+        needLogIn: false
+      }
     }).otherwise({
       redirectTo: '/'
     });
@@ -38,6 +62,13 @@ window.UI = {
       console.log(target);
       return $("#" + target).modal('setting', 'transition', 'fade up').modal('toggle');
     });
+  },
+  RoomUploaderToggle: function() {
+    $('#room').removeClass('has_uploader');
+    $('#room .player').removeClass('hidden');
+    $('#uploaderInfo').modal('show');
+    $('.status i').removeClass('red').addClass('green');
+    return $('.status').html("<i class=\"pot green\"></i> 已成功建立连接！");
   },
   init: function() {
     return this.enableModal();
@@ -61,9 +92,28 @@ window.angularApp.controller('IndexController', [
         }
       }).success(function(data, _) {
         if (data) {
+          $rs.logInUser(user.name);
           return $location.path('/dashboard');
+        } else {
+          $rs.logOut(user.name);
+          return $('#regist').modal('toggle');
         }
       });
+    };
+    return UI.init();
+  }
+]).controller('RoomController', [
+  '$scope', '$rootScope', '$http', '$cookieStore', '$location', function($s, $rs, $http, $cookie, $location) {
+    $s.location = $location;
+    $s.hasUploader = false;
+    $s.sendDanmu = function() {
+      var div, fontSize, socket, top;
+      socket = io("http://localhost:3001");
+      top = Math.random() * 360;
+      fontSize = Math.random() * 20 + 20;
+      div = '<div class="dm" style="top: "' + top + 'px"; fontSize: "' + fontSize + 'px">' + $s.message + '</div>';
+      socket.emit("danmaku", div);
+      return $s.message = "";
     };
     return UI.init();
   }

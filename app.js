@@ -1,19 +1,18 @@
-var express = require('express'),
-	http = require('http').Server(express),
-	io = require('socket.io')(http),
-	go = require('./globalObject');
+var express     = require('express'),
+	http        = require('http').Server(express),
+	io          = require('socket.io')(http),
+	go          = require('./globalObject');
 
-var path = require('path'),
-	favicon = require('serve-favicon'),
-	logger = require('morgan'),
+var path         = require('path'),
+	favicon      = require('serve-favicon'),
+	logger       = require('morgan'),
 	cookieParser = require('cookie-parser'),
-	bodyParser = require('body-parser');
+	bodyParser   = require('body-parser');
 
-var expressSession = require('express-session'),
-	busboy = require('connect-busboy'),
-	passport = require('passport'),
-	LocalStrategy = require('passport-local').Strategy,
-	MD5 = require('MD5');
+var expressSession     = require('express-session'),
+	passport           = require('passport'),
+	LocalStrategy      = require('passport-local').Strategy,
+	MD5                = require('MD5');
 
 var routes = require('./routes/index');
 
@@ -26,15 +25,24 @@ app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
+app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    //res.header("Content-Type", "application/json;charset=utf-8;");
+    next();
+});
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(busboy());
 app.use(cookieParser());
 app.use(expressSession({secret: 'secret key'}));
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Allow-Origin
+
 
 go.database.connect(function(msg) {
 	console.log(msg);

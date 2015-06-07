@@ -4,8 +4,13 @@ var express = require('express'),
 	passport = require('passport'),
 	MD5 = require('MD5');
 
+router.options('*', function(req, res) {
+	res.status(200).end();
+	next();
+});
+
 router.get('/', function (req, res) {
-	res.render('index', { title: 'Express' });
+	res.render('index');
 });
 
 router.post("/register", function (req, res) {

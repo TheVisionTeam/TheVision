@@ -1,5 +1,5 @@
-var config = require('./config.json'),
-	database = require('./service/DatabaseService')(config.dbUrl);
+var config     = require('./config.json'),
+	database   = require('./service/DatabaseService')(config.dbUrl);
 
 var go = {
 	roomList: {

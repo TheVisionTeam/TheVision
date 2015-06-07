@@ -1,3 +1,71 @@
-.ui.page.grid
-	.column
-		iframe src="http://211.68.72.88:9200/room/new"
+.ui.page.grid#room class='{{hasUploader ? "has_uploader" : ""}}'
+  .column
+    h1.header
+      .logo.small
+        img src="/assets/images/logo-black.png"
+      |  直播间
+      span.status
+        i.pot class="{{hasUploader ? 'red' : 'gray'}}"
+        | {{hasUploader ? '等待选择片源...' : '正在连接...' }}
+    .uploader ng-if="hasUploader"
+      #danmu
+      iframe#uploader src="http://127.0.0.1:9200/room/new" width="100%" height="100px"
+    .modal.ui.basic#uploaderInfo ng-if="hasUploader"
+      .header
+        | 视频选择成功！
+      .content
+        p 你已经成功选择了一段视频，现在可以分享给朋友们啦！
+        p 
+          span#url 
+            | --++--++--++
+        p 请注意，和你一同分享视频的小伙伴都得靠你的帮助，所以在分享期间请不要关闭此网页哦~！
+      .actions
+        a.ui.button.basic.green.fluid.inverted 知道啦！
+
+
+    .player class="{{hasUploader ? 'hidden' : ''}}"
+      iframe#vedioPlayer src=""
+      .ui.form
+        input type="text" placeholder="请在此输入信息" ng-model="message"
+        a.button.ui.primary#submit ng-click="sendDanmu()" 发送
+
+
+
+javascript:
+  function receiveMessage(event) {
+      console.log(event.data);
+      data = event.data
+      if (data.hash) {
+        document.getElementById('videoPlayer').src = 'http://127.0.0.1:9200/room#' + data.hash;                                                              
+        UI.RoomUploaderToggle();
+        $('#url').html(data.hash);
+      }
+      if (data.event) {
+        if (!socket) {
+          window.socket = new WebSocket('ws://127.0.0.1:3001')
+          socket.onopen = function() {
+            socket.send(JSON.stringify(data))
+          }
+        }
+      else socket.send(JSON.stringify(data))
+      };
+  }
+  window.addEventListener("message", receiveMessage, false);
+  if (!window.socket) {
+    window.socket = new WebSocket('ws://127.0.0.1:3001')
+  }
+  window.socket.onmessage = function(event) {
+    var data = event.data
+    if (data.event) {
+      document.getElementById('videoPlayer').contentWindow.postMessage(data, '*')
+    }
+  }
+
+  var Dansocket = io("http://localhost:3001");
+    Dansocket.on("danmaku", function(msg) {
+      var div = $(msg);
+      div.animate({right:'100%'});
+      $("#danmu").append(div);
+    });
+
+
