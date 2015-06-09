@@ -42,8 +42,8 @@
         {% if options.debug %}urlArgs: "bust=" + (new Date()).getTime(),{% end %}
         baseUrl: '/static/js',
         paths: {
-          jquery: 'http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min',
-          underscore: 'http://lib.sinaapp.com/js/underscore/1.4.4/underscore-min'
+          jquery: 'http://cdn.bootcss.com/jquery/1.11.1/jquery',
+          underscore: 'http://cdn.bootcss.com/underscore.js/1.8.3/underscore'
         }
       });
       window.console = window.console || {log: function(){}, debug: function(){}};
