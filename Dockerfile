@@ -5,11 +5,8 @@ RUN apt-get update
 RUN apt-get -y upgrade
 RUN apt-get -y install gcc g++ make ruby automake autoconf mongodb redis-server openssh-server curl wget nginx git-core
 WORKDIR /var
-RUN wget http://nodejs.org/dist/v0.12.4/node-v0.12.4-linux-x64.tar.gz
-RUN tar -zxvf node-v0.12.4-linux-x64.tar.gz
-WORKDIR /var/node-v0.12.4-linux-x64
-RUN ln -s /var/node.v0.12.4-linux-x64/bin/node /bin/node
-RUN ln -s /var/node.v0.12.4-linux-x64/bin/npm /bin/npm
+RUN curl -sL https://deb.nodesource.com/setup | sudo bash -
+RUN apt-get install -y nodejs build-essential
 EXPOSE 22
 EXPOSE 80
 EXPOSE 3000
