@@ -4,13 +4,12 @@ MAINTAINER TheVisionTeam "https://github.com/TheVisionTeam"
 RUN apt-get update
 RUN apt-get -y upgrade
 RUN apt-get -y install gcc g++ make ruby automake autoconf mongodb redis-server openssh-server curl wget nginx git-core
-WORKDIR /tmp
-RUN wget http://nodejs.org/dist/v0.12.4/node-v0.12.4.tar.gz
-RUN tar -zxvf node-v0.12.4.tar.gz
-WORKDIR /tmp/node-v0.12.4
-RUN ["./configure"]
-RUN make -j4
-RUN make install -j4
+WORKDIR /var
+RUN wget http://nodejs.org/dist/v0.12.4/node-v0.12.4-linux-x64.tar.gz
+RUN tar -zxvf node-v0.12.4-linux-x64.tar.gz
+WORKDIR /var/node-v0.12.4-linux-x64
+RUN ln -s /var/node.v0.12.4-linux-x64/bin/node /bin/node
+RUN ln -s /var/node.v0.12.4-linux-x64/bin/npm /bin/npm
 EXPOSE 22
 EXPOSE 80
 EXPOSE 3000
@@ -27,6 +26,3 @@ RUN bundle install -V
 RUN npm install --verbose
 RUN service nginx restart
 RUN chmod 777 -R bin/
-
-
-
